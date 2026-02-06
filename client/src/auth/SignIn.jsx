@@ -1,10 +1,15 @@
 import { FaGoogle } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
 import { FaLinkedinIn } from "react-icons/fa";
+import { useState } from "react";
 import '../index.css'
-// import { zod } from "zod"
 
 export default function SignIn() {
+    const [form, setForm] = useState({
+        email: "",
+        password: "",
+    });
+
     return (
         <div className="flex items-center justify-center min-h-screen bg-gray-50">
             <div className="flex bg-white shadow-lg rounded-xl overflow-hidden max-w-4xl w-full">
@@ -29,11 +34,15 @@ export default function SignIn() {
                             className="pl-4 py-3 bg-gray-100 text-gray-500 rounded-xl w-full"
                         />
                         <input
+                            value={form.email}
+                            onChange={(e) => setForm({ ...form, email: e.target.value })}
                             type="email"
                             placeholder="Enter Your Email"
                             className="pl-4 py-3 bg-gray-100 text-gray-500 rounded-xl w-full"
                         />
                         <input
+                            value={form.password}
+                            onChange={(e) => setForm({ ...form, password: e.target.value })}
                             type="password"
                             placeholder="Enter Your Password"
                             className="pl-4 py-3 bg-gray-100 text-gray-500 rounded-xl w-full"
