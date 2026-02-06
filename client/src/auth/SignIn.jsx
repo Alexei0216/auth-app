@@ -2,7 +2,6 @@ import { FaGoogle } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
 import { FaLinkedinIn } from "react-icons/fa";
 import '../index.css'
-// import { zod } from "zod"
 
 export default function SignIn() {
     return (
