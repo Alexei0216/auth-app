@@ -1,21 +1,41 @@
-import { FaGoogle } from "react-icons/fa";
-import { FaFacebook } from "react-icons/fa";
-import { FaLinkedinIn } from "react-icons/fa";
-import { useState } from "react";
+import { FaGoogle, FaFacebook, FaLinkedinIn } from "react-icons/fa";
 import '../index.css'
 import { useForm } from "react-hook-form";
+import { useState } from "react";
 
 export default function SignIn() {
-
     const {
         register,
         handleSubmit,
         formState: { errors },
     } = useForm();
 
-    const onSubmit = (data) => {
-        console.log("Form data:", data);
-    }
+    const [serverError, setServerError] = useState(null);
+
+    const onSubmit = async (data) => {
+        try {
+            setServerError(null);
+
+            const res = await fetch("http://localhost:5000/api/auth/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                credentials: "include",
+                body: JSON.stringify(data),
+            });
+
+            const result = await res.json();
+
+            if (res.ok) {
+                console.log("User logged in:", result.user);
+            }
+
+            console.log("Server response:", result);
+        } catch (err) {
+            setServerError("Server is not reachable");
+        }
+    };
 
     return (
         <div className="flex items-center justify-center min-h-screen bg-gray-50">
@@ -87,10 +107,11 @@ export default function SignIn() {
                         </span>
                     </button>
                 </div>
-
             </div>
+            {serverError && (
+                <p className="text-red-600 text-sm text-center">{serverError}</p>
+            )}
         </div>
-
 
     )
 }
