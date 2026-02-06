@@ -19,7 +19,7 @@ app.use("/api/auth", authRoutes);
 async function startServer() {
     try {
         await waitForDB();
-        await initDB();
+        initDB();
 
         app.get("/", (req, res) => {
             res.send("Server is running and DB is connected!");
