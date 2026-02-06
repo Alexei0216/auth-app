@@ -1,9 +1,22 @@
 import { FaGoogle } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
 import { FaLinkedinIn } from "react-icons/fa";
+import { useState } from "react";
 import '../index.css'
+import { useForm } from "react-hook-form";
 
 export default function SignIn() {
+
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm();
+
+    const onSubmit = (data) => {
+        console.log("Form data:", data);
+    }
+
     return (
         <div className="flex items-center justify-center min-h-screen bg-gray-50">
             <div className="flex bg-white shadow-lg rounded-xl overflow-hidden max-w-4xl w-full">
@@ -21,22 +34,43 @@ export default function SignIn() {
                         </button>
                     </div>
 
-                    <form className="flex flex-col gap-4 w-full max-w-sm">
+                    <form
+                        className="flex flex-col gap-4 w-full max-w-sm"
+                        onSubmit={handleSubmit(onSubmit)}
+                    >
                         <input
                             type="text"
                             placeholder="Enter Your Name"
                             className="pl-4 py-3 bg-gray-100 text-gray-500 rounded-xl w-full"
+                            {...register("name", { required: "Name is required  " })}
                         />
+                        {errors.name && <p className="text-red-500 text-sm">{errors.name.message}</p>}
                         <input
                             type="email"
                             placeholder="Enter Your Email"
                             className="pl-4 py-3 bg-gray-100 text-gray-500 rounded-xl w-full"
+                            {...register("email", {
+                                required: "Email is required",
+                                pattern: {
+                                    value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                                    message: "Invalid email address",
+                                },
+                            })}
                         />
+                        {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
                         <input
                             type="password"
                             placeholder="Enter Your Password"
                             className="pl-4 py-3 bg-gray-100 text-gray-500 rounded-xl w-full"
+                            {...register("password", {
+                                required: "Password is required",
+                                minLength: {
+                                    value: 6,
+                                    message: "Password must be at least 6 characters",
+                                },
+                            })}
                         />
+                        {errors.password && <p className="text-red-500 text-sm">{errors.password.message}</p>}
                         <button className="btn-gradient mt-4 w-full rounded-xl">Sign In</button>
                     </form>
                 </div>
