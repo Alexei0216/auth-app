@@ -27,11 +27,12 @@ export default function SignIn() {
 
             const result = await res.json();
 
-            if (res.ok) {
-                console.log("User logged in:", result.user);
+            if (!res.ok) {
+                setServerError(result.message || "Login failed");
+                return;
             }
 
-            console.log("Server response:", result);
+            console.log("Logged user:", result.user);
         } catch (err) {
             setServerError("Server is not reachable");
         }
@@ -41,7 +42,7 @@ export default function SignIn() {
         <div className="flex items-center justify-center min-h-screen bg-gray-50">
             <div className="flex bg-white shadow-lg rounded-xl overflow-hidden max-w-4xl w-full">
                 <div className="flex flex-col justify-center items-center p-12 w-1/2 gap-6 bg-white">
-                    <h1 className="text-black text-4xl font-bold pb-4">Sign In</h1>
+                    <h1 className="text-black text-4xl font-bold pb-4">Iniciar sesión</h1>
                     <div className="flex flex-row gap-4">
                         <button className="p-3 border rounded-full cursor-pointer hover:bg-gray-100">
                             <FaGoogle />
@@ -60,15 +61,15 @@ export default function SignIn() {
                     >
                         <input
                             type="text"
-                            placeholder="Enter Your Name"
-                            className="pl-4 py-3 bg-gray-100 text-gray-500 rounded-xl w-full"
+                            placeholder="Introduce tu nombre"
+                            className="pl-4 py-3 bg-gray-100 text-black rounded-xl w-full"
                             {...register("name", { required: "Name is required  " })}
                         />
                         {errors.name && <p className="text-red-500 text-sm">{errors.name.message}</p>}
                         <input
                             type="email"
-                            placeholder="Enter Your Email"
-                            className="pl-4 py-3 bg-gray-100 text-gray-500 rounded-xl w-full"
+                            placeholder="Introduce tu correo electrónico"
+                            className="pl-4 py-3 bg-gray-100 text-black rounded-xl w-full"
                             {...register("email", {
                                 required: "Email is required",
                                 pattern: {
@@ -80,8 +81,8 @@ export default function SignIn() {
                         {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
                         <input
                             type="password"
-                            placeholder="Enter Your Password"
-                            className="pl-4 py-3 bg-gray-100 text-gray-500 rounded-xl w-full"
+                            placeholder="Introduce tu contraseña"
+                            className="pl-4 py-3 bg-gray-100 text-black rounded-xl w-full"
                             {...register("password", {
                                 required: "Password is required",
                                 minLength: {
@@ -91,19 +92,19 @@ export default function SignIn() {
                             })}
                         />
                         {errors.password && <p className="text-red-500 text-sm">{errors.password.message}</p>}
-                        <button className="btn-gradient mt-4 w-full rounded-xl">Sign In</button>
+                        <button className="btn-gradient mt-4 w-full rounded-xl">Iniciar sesión</button>
                     </form>
                 </div>
 
                 <div className="bg-gradient flex flex-col justify-center items-center p-12 w-1/2 gap-6 text-center">
-                    <h1 className="text-white text-4xl font-bold">Hello, Friend!</h1>
+                    <h1 className="text-white text-4xl font-bold">¡Hola, amigo!</h1>
                     <p className="text-white text-lg mt-5">
-                        Enter your personal details and start your journey with us
+                        Introduce tus datos personales y comienza tu viaje con nosotros
                     </p>
                     <button className="bg-white mt-15 px-8 py-3 rounded-xl font-bold shadow-lg cursor-pointer">
                         <span className="bg-gradient-to-r from-orange-400 via-red-500 to-yellow-500 
                                         bg-clip-text text-transparent animate-gradient-x">
-                            Sign Up
+                            Registrarse
                         </span>
                     </button>
                 </div>
