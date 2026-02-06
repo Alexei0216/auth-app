@@ -41,14 +41,14 @@ export default function SignIn() {
                         <input
                             type="text"
                             placeholder="Enter Your Name"
-                            className="pl-4 py-3 bg-gray-100 text-gray-500 rounded-xl w-full"
+                            className="pl-4 py-3 bg-gray-100 text-black rounded-xl w-full"
                             {...register("name", { required: "Name is required  " })}
                         />
                         {errors.name && <p className="text-red-500 text-sm">{errors.name.message}</p>}
                         <input
                             type="email"
                             placeholder="Enter Your Email"
-                            className="pl-4 py-3 bg-gray-100 text-gray-500 rounded-xl w-full"
+                            className="pl-4 py-3 bg-gray-100 text-black rounded-xl w-full"
                             {...register("email", {
                                 required: "Email is required",
                                 pattern: {
@@ -61,7 +61,7 @@ export default function SignIn() {
                         <input
                             type="password"
                             placeholder="Enter Your Password"
-                            className="pl-4 py-3 bg-gray-100 text-gray-500 rounded-xl w-full"
+                            className="pl-4 py-3 bg-gray-100 text-black rounded-xl w-full"
                             {...register("password", {
                                 required: "Password is required",
                                 minLength: {
