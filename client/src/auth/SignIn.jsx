@@ -100,6 +100,9 @@ export default function SignIn() {
                             />
                             <button className="btn-gradient mt-4 w-full rounded-xl">Iniciar sesión</button>
                         </form>
+                        {serverError && (
+                            <p className="text-red-600 text-sm text-center">{serverError}</p>
+                        )}
                     </div>
 
                     <div className="bg-gradient flex flex-col justify-center items-center p-12 w-1/2 gap-6 text-center">
@@ -115,9 +118,6 @@ export default function SignIn() {
                         </button>
                     </div>
                 </div>
-                {serverError && (
-                    <p className="text-red-600 text-sm text-center">{serverError}</p>
-                )}
             </div>
         </MainLayout>
     )
