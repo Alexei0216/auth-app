@@ -1,10 +1,4 @@
-<<<<<<< HEAD
-import { FaGoogle, FaLinkedinIn, FaFacebook } from "react-icons/fa";
-import '../index.css'
 import InputField from "./SignInComponents";
-
-export default function SignIn() {
-=======
 import { FaGoogle, FaFacebook, FaLinkedinIn } from "react-icons/fa";
 import '../index.css'
 import { useForm } from "react-hook-form";
@@ -44,7 +38,7 @@ export default function SignIn() {
             setServerError("Server is not reachable");
         }
     };
->>>>>>> 5939037fa306807823b99ce709624116b45c07f6
+
 
     return (
         <div className="flex items-center justify-center min-h-screen bg-gray-50">
@@ -67,58 +61,28 @@ export default function SignIn() {
                         className="flex flex-col gap-4 w-full max-w-sm"
                         onSubmit={handleSubmit(onSubmit)}
                     >
-<<<<<<< HEAD
                         <InputField
                             label="Enter your name"
                             name="name"
                             register={register}
                             rules={{ required: "Name is required" }}
-=======
-                        <input
-                            type="text"
-                            placeholder="Introduce tu nombre"
-                            className="pl-4 py-3 bg-gray-100 text-black rounded-xl w-full"
-                            {...register("name", { required: "Name is required  " })}
->>>>>>> 5939037fa306807823b99ce709624116b45c07f6
+                            errors={errors}
                         />
                         <InputField
                             label="Enter your email"
                             name="email"
                             type="email"
-<<<<<<< HEAD
                             register={register}
                             rules={{
-=======
-                            placeholder="Introduce tu correo electrónico"
-                            className="pl-4 py-3 bg-gray-100 text-black rounded-xl w-full"
-                            {...register("email", {
->>>>>>> 5939037fa306807823b99ce709624116b45c07f6
                                 required: "Email is required",
                                 pattern: {
                                     value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
                                     message: "Invalid email address"
                                 }
                             }}
+                            errors={errors}
                         />
-<<<<<<< HEAD
                         <button className="btn-gradient mt-4 w-full rounded-xl">Sign In</button>
-=======
-                        {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
-                        <input
-                            type="password"
-                            placeholder="Introduce tu contraseña"
-                            className="pl-4 py-3 bg-gray-100 text-black rounded-xl w-full"
-                            {...register("password", {
-                                required: "Password is required",
-                                minLength: {
-                                    value: 6,
-                                    message: "Password must be at least 6 characters",
-                                },
-                            })}
-                        />
-                        {errors.password && <p className="text-red-500 text-sm">{errors.password.message}</p>}
-                        <button className="btn-gradient mt-4 w-full rounded-xl">Iniciar sesión</button>
->>>>>>> 5939037fa306807823b99ce709624116b45c07f6
                     </form>
                 </div>
 
