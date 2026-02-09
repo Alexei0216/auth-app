@@ -1,5 +1,5 @@
 import express from "express";
-import { db } from "../db.js";
+import { getDB } from "../db.js";
 
 const router = express.Router();
 
@@ -11,6 +11,8 @@ router.post("/login", async (req, res) => {
     }
 
     try {
+        const db = getDB();
+
         const [rows] = await db.query(
             "SELECT id, email, password, role FROM users WHERE email = ?",
             [email]
