@@ -7,7 +7,7 @@ export function AuthProvider({ children }) {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const checkAuth = async () => {
+        async function checkAuth() {
             try {
                 const res = await fetch("http://localhost:5000/api/auth/me", {
                     credentials: "include",
@@ -24,12 +24,12 @@ export function AuthProvider({ children }) {
             } finally {
                 setLoading(false);
             }
-        };
+        }
 
         checkAuth();
     }, []);
 
-    const login = async (email, password) => {
+    async function login(email, password) {
         const res = await fetch("http://localhost:5000/api/auth/login", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -44,41 +44,24 @@ export function AuthProvider({ children }) {
 
         const data = await res.json();
         setUser(data.user);
-    };
+    }
 
-    const register = async (name, email, password) => {
-        const res = await fetch("http://localhost:5000/api/auth/register", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            credentials: "include",
-            body: JSON.stringify({ name, email, password }),
-        });
-
-        if (!res.ok) {
-            const err = await res.json();
-            throw new Error(err.message || "Register failed");
-        }
-
-        const data = await res.json();
-        setUser(data.user);
-    };
-
-    const logout = async () => {
+    async function logout() {
         await fetch("http://localhost:5000/api/auth/logout", {
             method: "POST",
             credentials: "include",
         });
 
         setUser(null);
-    };
+    }
 
     return (
-        <AuthContext.Provider
-            value={{ user, loading, login, register, logout }}
-        >
+        <AuthContext.Provider value={{ user, loading, login, logout }}>
             {children}
         </AuthContext.Provider>
     );
 }
 
-export const useAuth = () => useContext(AuthContext);
+export function useAuth() {
+    return useContext(AuthContext);
+}

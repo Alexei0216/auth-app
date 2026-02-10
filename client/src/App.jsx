@@ -1,6 +1,16 @@
-import { RouterProvider } from "react-router-dom";
-import { router } from "./routes/Index";
+import { useAuth } from "./context/AuthContext";
 
-export default function App() {
-  return <RouterProvider router={router} />
+function App() {
+  const { user, loading } = useAuth();
+
+  if (loading) return <div>Loading...</div>;
+
+  return (
+    <div>
+      <h1>Auth test</h1>
+      <pre>{JSON.stringify(user, null, 2)}</pre>
+    </div>
+  );
 }
+
+export default App;
