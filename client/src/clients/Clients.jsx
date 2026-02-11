@@ -13,7 +13,9 @@ export default function Clients() {
     const fetchClients = async () => {
         try {
             setLoading(true)
-            const response = await fetch("http://locaolhost:5000/api/clients")
+            const response = await fetch("http://localhost:5000/api/clients", {
+                credentials: "include"
+            })
 
             if (!response.ok) {
                 throw new Error("Failed to fetch clients")
@@ -31,10 +33,11 @@ export default function Clients() {
     const handleDelete = async (id) => {
         try {
             await fetch(`http://localhost:5000/api/clients/${id}`, {
-                method: "DELETE"
+                method: "DELETE",
+                credentials: "include"
             })
 
-            setClients(clients.filter(client => client.id !== id))
+            setClients(prev => prev.filter(client => client.id !== id))
         } catch (err) {
             console.error(err);
         }
@@ -42,7 +45,7 @@ export default function Clients() {
 
     return (
         <MainLayout>
-            <div className="min-h-screen bg-gray-100 py-16 px-4">
+            <div className="min-h-screen bg-gray-50 py-16 px-4">
                 <div className="max-w-6xl mx-auto">
                     <h1 className="text-3xl font-bold mb-8">
                         Clients Dashboard
