@@ -1,7 +1,9 @@
 import { FaGoogle, FaFacebook, FaLinkedinIn } from "react-icons/fa";
 import '../index.css'
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useAuth } from "../context/AuthContext";
 import InputField from "./SignInComponents";
 import MainLayout from "../layouts/MainLayout";
 
@@ -12,31 +14,19 @@ export default function SignIn() {
         formState: { errors },
     } = useForm();
 
+    const navigate = useNavigate();
+    const { login } = useAuth();
+
     const [serverError, setServerError] = useState(null);
 
     const onSubmit = async (data) => {
         try {
-            setServerError(null);
+            await login(data.email, data.password);
 
-            const res = await fetch("http://localhost:5000/api/auth/login", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                credentials: "include",
-                body: JSON.stringify(data),
-            });
+            navigate("/clients");
 
-            const result = await res.json();
-
-            if (!res.ok) {
-                setServerError(result.message || "Login failed");
-                return;
-            }
-
-            console.log("Logged user:", result.user);
         } catch (err) {
-            setServerError("Server is not reachable");
+            setServerError(err.message);
         }
     };
 
