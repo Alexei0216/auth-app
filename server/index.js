@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import { waitForDB, initDB } from "./db.js";
 import authRoutes from "./routes/auth.js";
+import clientsRoutes from "./routes/clients.js";
 
 dotenv.config();
 
@@ -17,6 +18,7 @@ app.use(cors({
 app.use(express.json());
 app.use(cookieParser());
 app.use("/api/auth", authRoutes);
+app.use("/api/clients", clientsRoutes);
 
 async function startServer() {
     try {
