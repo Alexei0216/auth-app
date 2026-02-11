@@ -47,13 +47,13 @@ export default function SignIn() {
                     <div className="flex flex-col justify-center items-center p-12 w-1/2 gap-6 bg-white">
                         <h1 className="text-black text-4xl font-bold pb-4">Iniciar sesión</h1>
                         <div className="flex flex-row gap-4">
-                            <button className="p-3 border rounded-full cursor-pointer hover:bg-gray-100">
+                            <button className="p-3 border rounded-full cursor-pointer hover:bg-gray-100 transition-transform duration-200  hover:scale-105">
                                 <FaGoogle />
                             </button>
-                            <button className="p-3 border rounded-full cursor-pointer hover:bg-gray-100">
+                            <button className="p-3 border rounded-full cursor-pointer hover:bg-gray-100 transition-transform duration-200  hover:scale-105">
                                 <FaFacebook />
                             </button>
-                            <button className="p-3 border rounded-full cursor-pointer hover:bg-gray-100">
+                            <button className="p-3 border rounded-full cursor-pointer hover:bg-gray-100 transition-transform duration-200  hover:scale-105">
                                 <FaLinkedinIn />
                             </button>
                         </div>

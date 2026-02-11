@@ -7,10 +7,10 @@ export default function MainLayout({ children }) {
                 <img src="/logo.svg" alt="Logo" className="w-50"/>
             </header>
 
-            <main>
+            <main className="flex-1">
                 {children}
             </main>
-            <footer className="flex flex-row justify-center items-center py-10">
+            <footer className="bg-gradient flex flex-row justify-center items-center py-10">
                 <img src="/logo.svg" alt="Logo" />
             </footer>
         </>
