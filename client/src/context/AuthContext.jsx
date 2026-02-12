@@ -55,8 +55,26 @@ export function AuthProvider({ children }) {
         setUser(null);
     }
 
+    async function registerUser(name, email, password) {
+        const res = await fetch("http://localhost:5000/api/register", {
+            method: "POST",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                name,
+                email,
+                password
+            })
+        })
+
+        const data = await res.json()
+        return data
+    }
+
     return (
-        <AuthContext.Provider value={{ user, loading, login, logout }}>
+        <AuthContext.Provider value={{ user, loading, login, logout, registerUser }}>
             {children}
         </AuthContext.Provider>
     );
