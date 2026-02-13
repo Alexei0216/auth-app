@@ -100,7 +100,7 @@ export default function SignIn() {
                         <p className="text-white text-lg mt-5">
                             Introduce tus datos personales y comienza tu viaje con nosotros
                         </p>
-                        <button className="bg-white mt-15 px-8 py-3 rounded-xl font-bold shadow-lg cursor-pointer">
+                        <button onClick={() => navigate("/register")} className="bg-white mt-15 px-8 py-3 rounded-xl font-bold shadow-lg cursor-pointer">
                             <span className="bg-gradient-to-r from-orange-400 via-red-500 to-yellow-500 
                                         bg-clip-text text-transparent animate-gradient-x">
                                 Registrarse

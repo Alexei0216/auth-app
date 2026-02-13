@@ -5,6 +5,8 @@ export default function Clients() {
     const [clients, setClients] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [editClient, setEditClient] = useState(null)
+    
 
     useEffect(() => {
         fetchClients()
@@ -32,10 +34,14 @@ export default function Clients() {
 
     const handleDelete = async (id) => {
         try {
-            await fetch(`http://localhost:5000/api/clients/${id}`, {
+            const response = await fetch(`http://localhost:5000/api/clients/${id}`, {
                 method: "DELETE",
                 credentials: "include"
             })
+
+            if (!response.ok) {
+                throw new Error("Failed to delete client")
+            }
 
             setClients(prev => prev.filter(client => client.id !== id))
         } catch (err) {
@@ -43,7 +49,7 @@ export default function Clients() {
         }
     }
 
-    console.log(clients)    
+    console.log(clients)
 
     return (
         <MainLayout>
@@ -88,6 +94,18 @@ export default function Clients() {
                                         <td className="px-6 py-4">{client.email}</td>
                                         <td className="px-6 py-4">{client.role}</td>
                                         <td className="px-6 py-4 text-right">
+                                            <button onClick={() => {
+                                                setEditClient(client)
+                                                setFormaData({
+                                                    name: client.name,
+                                                    email: client.email,
+                                                    role: client.role
+                                                })
+                                            }}
+                                                className="text-blue-600 hover:text-blue-800 mr-4"
+                                            >
+                                                Edit
+                                            </button>
                                             <button
                                                 onClick={() => handleDelete(client.id)}
                                                 className="text-red-600 hover:text-red-800"

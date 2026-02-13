@@ -9,6 +9,10 @@ import MainLayout from "../layouts/MainLayout";
 
 
 export default function SignUp() {
+
+    const [serverError, setServerError] = useState(null);
+    const [user, setUser] = useState([]);
+
     const {
         register,
         handleSubmit,
@@ -17,8 +21,6 @@ export default function SignUp() {
 
     const navigate = useNavigate();
     const { registerUser } = useAuth();
-
-    const [serverError, setServerError] = useState(null);
 
     const onSubmit = async (data) => {
         try {
@@ -90,7 +92,7 @@ export default function SignUp() {
                                     },
                                 })}
                             />
-                            <button className="btn-gradient mt-4 w-full rounded-xl">Redistre</button>
+                            <button className="btn-gradient mt-4 w-full rounded-xl">Registrarse</button>
                         </form>
                         {serverError && (
                             <p className="text-red-600 text-sm text-center">{serverError}</p>
@@ -99,9 +101,10 @@ export default function SignUp() {
                     <div className="bg-gradient flex flex-col justify-center items-center p-12 w-1/2 gap-6 text-center">
                         <h1 className="text-white text-4xl font-bold">¡Hola, amigo!</h1>
                         <p className="text-white text-lg mt-5">
-                            If you have account
+                            ¿Ya tienes una cuenta?
+                            Inicia sesión para continuar.
                         </p>
-                        <button className="bg-white mt-15 px-8 py-3 rounded-xl font-bold shadow-lg cursor-pointer">
+                        <button onClick={() => navigate("/login")} className="bg-white mt-10 px-8 py-3 rounded-xl font-bold shadow-lg cursor-pointer">
                             <span className="bg-gradient-to-r from-orange-400 via-red-500 to-yellow-500 
                                         bg-clip-text text-transparent animate-gradient-x">
                                 Login
