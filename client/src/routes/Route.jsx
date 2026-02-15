@@ -20,7 +20,7 @@ export const routes = [
     {
         path: "/clients",
         element: (
-            <ProtectedRoute>
+            <ProtectedRoute role="admin">
                 <Clients />
             </ProtectedRoute>
         ),

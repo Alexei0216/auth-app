@@ -1,12 +1,13 @@
 import MainLayout from "../layouts/MainLayout"
 import { useEffect, useState } from "react"
+import { apiFetch } from "../api/apiFetch";
 
 export default function Clients() {
     const [clients, setClients] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [editClient, setEditClient] = useState(null)
-    
+
 
     useEffect(() => {
         fetchClients()
@@ -15,9 +16,7 @@ export default function Clients() {
     const fetchClients = async () => {
         try {
             setLoading(true)
-            const response = await fetch("http://localhost:5000/api/clients", {
-                credentials: "include"
-            })
+            const response = await apiFetch("http://localhost:5000/api/clients");
 
             if (!response.ok) {
                 throw new Error("Failed to fetch clients")
@@ -34,22 +33,22 @@ export default function Clients() {
 
     const handleDelete = async (id) => {
         try {
-            const response = await fetch(`http://localhost:5000/api/clients/${id}`, {
-                method: "DELETE",
-                credentials: "include"
-            })
+            const response = await apiFetch(
+                `http://localhost:5000/api/clients/${id}`,
+                {
+                    method: "DELETE",
+                }
+            );
 
             if (!response.ok) {
-                throw new Error("Failed to delete client")
+                throw new Error("Failed to delete client");
             }
 
-            setClients(prev => prev.filter(client => client.id !== id))
+            setClients(prev => prev.filter(client => client.id !== id));
         } catch (err) {
             console.error(err);
         }
-    }
-
-    console.log(clients)
+    };
 
     return (
         <MainLayout>
@@ -96,7 +95,7 @@ export default function Clients() {
                                         <td className="px-6 py-4 text-right">
                                             <button onClick={() => {
                                                 setEditClient(client)
-                                                setFormaData({
+                                                setFormData({
                                                     name: client.name,
                                                     email: client.email,
                                                     role: client.role

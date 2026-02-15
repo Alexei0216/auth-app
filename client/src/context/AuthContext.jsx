@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import { apiFetch } from "../api/apiFetch";
 
 const AuthContext = createContext(null);
 
@@ -9,9 +10,7 @@ export function AuthProvider({ children }) {
     useEffect(() => {
         async function checkAuth() {
             try {
-                const res = await fetch("http://localhost:5000/api/auth/me", {
-                    credentials: "include",
-                });
+                const res = await apiFetch("http://localhost:5000/api/auth/me");
 
                 if (res.ok) {
                     const data = await res.json();
@@ -58,10 +57,11 @@ export function AuthProvider({ children }) {
     async function registerUser(name, email, password) {
         const res = await fetch("http://localhost:5000/api/auth/register", {
             method: "POST",
+            credentials: "include",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ name, email, password })
+            body: JSON.stringify({ name, email, password }),
         });
 
         const data = await res.json();
