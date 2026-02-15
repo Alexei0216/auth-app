@@ -1,6 +1,5 @@
 let isRefreshing = false;
 let refreshPromise = null;
-let hasRedirected = false;
 
 async function refreshToken() {
     if (!isRefreshing) {
@@ -42,9 +41,8 @@ export async function apiFetch(url, options = {}) {
             credentials: "include",
         });
     } catch (err) {
-        if (!hasRedirected) {
-            hasRedirected = true;
-            window.location.href = "/login";
+        if (window.location.pathname !== "/login") {
+            window.location.replace("/login");
         }
 
         throw err;
