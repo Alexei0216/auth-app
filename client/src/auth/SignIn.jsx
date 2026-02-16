@@ -22,8 +22,7 @@ export default function SignIn() {
     const onSubmit = async (data) => {
         try {
             await login(data.email, data.password);
-
-            navigate("/clients");
+            navigate("/");
 
         } catch (err) {
             setServerError(err.message);

@@ -6,7 +6,13 @@ export default function HomeRedirect() {
 
     if (loading) return <div>Loading...</div>;
 
-    return user
-        ? <Navigate to="/clients" replace />
-        : <Navigate to="/login" replace />;
+    if (!user) {
+        return <Navigate to="/login" replace />;
+    }
+
+    if (user.role === "admin") {
+        return <Navigate to="/clients" replace />;
+    }
+
+    return <Navigate to="/forbidden" replace />;
 }

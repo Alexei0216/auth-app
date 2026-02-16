@@ -3,6 +3,7 @@ import Clients from "../clients/Clients";
 import ProtectedRoute from "./ProtectedRoutes";
 import HomeRedirect from "./HomeRedirect";
 import SignUp from "../auth/SignUp";
+import Forbidden from "./Forbidden";
 
 export const routes = [
     {
@@ -16,6 +17,10 @@ export const routes = [
     {
         path: "/register",
         element: <SignUp />,
+    },
+    {
+        path: "/forbidden",
+        element: <Forbidden />,
     },
     {
         path: "/clients",

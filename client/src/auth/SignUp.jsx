@@ -25,8 +25,7 @@ export default function SignUp() {
     const onSubmit = async (data) => {
         try {
             await registerUser(data.name, data.email, data.password);
-
-            navigate("/clients");
+            navigate("/");
 
         } catch (err) {
             setServerError(err.message);
