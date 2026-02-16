@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 import { apiFetch } from "../api/apiFetch";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import EditClientModal from "./EditClientModal";
 
 export default function Clients() {
     const [clients, setClients] = useState([]);
@@ -112,11 +113,6 @@ export default function Clients() {
                                         <td className="px-6 py-4 text-right">
                                             <button onClick={() => {
                                                 setEditClient(client)
-                                                setFormData({
-                                                    name: client.name,
-                                                    email: client.email,
-                                                    role: client.role
-                                                })
                                             }}
                                                 className="text-blue-600 hover:text-blue-800 mr-4"
                                             >
@@ -131,6 +127,37 @@ export default function Clients() {
                                         </td>
                                     </tr>
                                 ))}
+
+                                    {editClient && (
+                                        <EditClientModal
+                                            client={editClient}
+                                            onClose={() => setEditClient(null)}
+                                            onSave={async (updated) => {
+                                                try {
+                                                    const response = await apiFetch(
+                                                        `http://localhost:5000/api/clients/${updated.id}`,
+                                                        {
+                                                            method: "PUT",
+                                                            headers: {
+                                                                "Content-Type": "application/json",
+                                                            },
+                                                            body: JSON.stringify({
+                                                                name: updated.name,
+                                                                email: updated.email,
+                                                                role: updated.role,
+                                                            }),
+                                                        }
+                                                    );
+
+                                                    const data = await response.json();
+                                                    setClients(prev => prev.map(c => c.id === data.id ? data : c));
+                                                    setEditClient(null);
+                                                } catch (err) {
+                                                    console.error("Failed to save client", err);
+                                                }
+                                            }}
+                                        />
+                                    )}
 
                                 {!loading && !error && clients.length === 0 && (
                                     <tr>

@@ -11,7 +11,6 @@ import MainLayout from "../layouts/MainLayout";
 export default function SignUp() {
 
     const [serverError, setServerError] = useState(null);
-    const [user, setUser] = useState([]);
 
     const {
         register,

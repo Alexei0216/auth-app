@@ -30,7 +30,9 @@ async function refreshToken() {
                 let body = null;
                 try {
                     body = await parseResponseBody(res);
-                } catch (_) { }
+                } catch {
+                    body = null;
+                }
                 throw new ApiError("Refresh failed", res.status, body);
             }
             return res.json();
@@ -57,7 +59,9 @@ export async function apiFetch(url, options = {}) {
             let body = null;
             try {
                 body = await parseResponseBody(response);
-            } catch (_) { }
+            } catch {
+                body = null;
+            }
             const message = body?.message || `Request failed with status ${response.status}`;
             throw new ApiError(message, response.status, body);
         }
@@ -76,7 +80,9 @@ export async function apiFetch(url, options = {}) {
             let body = null;
             try {
                 body = await parseResponseBody(retryResponse);
-            } catch (_) { }
+            } catch {
+                body = null;
+            }
             const message = body?.message || `Request failed with status ${retryResponse.status}`;
             throw new ApiError(message, retryResponse.status, body);
         }
