@@ -15,7 +15,7 @@ Asegúrate de tener instalado:
 ### 1. Clonar el repositorio
 
 ```bash
-git clone <URL_DEL_REPOSITORIO>
+git clone https://github.com/Alexei0216/auth-app.git
 cd <NOMBRE_DEL_PROYECTO>
 ```
 
@@ -44,7 +44,7 @@ Una vez iniciado, la aplicación estará disponible en:
 * Client: http://localhost:5174
 * -(Server: http://localhost:5000)
 
-## 🛑 Detener el proyecto
+## Detener el proyecto
 
 Para detener los contenedores:
 
