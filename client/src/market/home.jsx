@@ -43,7 +43,7 @@ export default function Home() {
 
     return (
         <MarketLayout>
-            <div className="flex flex-col items-center w-full m-10">
+            <div className="flex flex-col items-center w-full m-10 ">
                 <input
                     type="text"
                     placeholder="Buscar en la tienda"

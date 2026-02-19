@@ -6,7 +6,7 @@ export default function MarketLayout({ children }) {
                 <h3 className="font-bold text-white text-2xl">CATALOG</h3>
             </header>
 
-            <main className="flex-1 bg-[#101014]">
+            <main className="flex-1 bg-[#101014] overflow-hidden">
                 {children}
             </main>
 
