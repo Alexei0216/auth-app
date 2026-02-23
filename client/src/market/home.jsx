@@ -1,13 +1,15 @@
-import MarketLayout from "../layouts/MarketLayout"
-import { useState, useEffect } from "react"
+import MarketLayout from "../layouts/MarketLayout";
+import { useState, useEffect } from "react";
+import { FaSearch } from "react-icons/fa";
+import HomeSlider from "./home-components/HomeSlider";
 
 
 const slides = [
     {
-        title: "OFERTAS DE INVIERNO",
-        subtitle: "DEL 9 AL 23 DE FEBRERO",
-        description: "Ahorra hasta un 80% con las mejores ofertas.",
-        image: "/starrail.webp",
+        title: "Black Myth: Wukong",
+        subtitle: "AHORA CON UN 25% DE DESCUENTA",
+        description: "Que ni el frío ni la nieve os afecten y que vuestro año rebose seguridad",
+        image: "/blackmyth.jpg",
     },
     {
         title: "Honkai: Star Rail",
@@ -19,7 +21,7 @@ const slides = [
         title: "Battlefield 6",
         subtitle: "YA DISPONIBLE",
         description: "Vive la guerra como nunca antes.",
-        image: "/starrail.webp",
+        image: "/battlefield6.jpg",
     },
 ]
 
@@ -44,11 +46,15 @@ export default function Home() {
     return (
         <MarketLayout>
             <div className="flex flex-col items-center w-full m-10 ">
-                <input
-                    type="text"
-                    placeholder="Buscar en la tienda"
-                    className="w-full max-w-sm py-2 px-4 bg-[#404044] rounded-3xl placeholder-white/55 text-sm text-gray-50 mb-10"
-                />
+
+                <div className="w-full max-w-sm relative w-64 bg-[#404044] mb-10 flex justify-center items-center rounded-3xl">
+                    <FaSearch className="ml-4 text-gray-400 pointer-events-none" />
+                    <input
+                        type="text"
+                        placeholder="Buscar en la tienda"
+                        className="w-full max-w-sm py-2 px-4 bg-[#404044] rounded-3xl text-left-2 placeholder-white/55 text-sm text-gray-50 border-none focus:outline-none"
+                    />
+                </div>
 
                 <div className="flex gap-6 h-[520px] w-full max-w-6xl">
 
@@ -72,7 +78,7 @@ export default function Home() {
                             <h2 className="text-3xl font-bold mb-2">{current.title}</h2>
                             <p className="text-sm uppercase tracking-widest text-white/70">{current.subtitle}</p>
                             <p className="text-lg text-white/90 mb-4">{current.description}</p>
-                            <button className="bg-white text-black px-6 py-2 rounded-lg font-semibold hover:bg-gray-200 transition">
+                            <button className="bg-white text-black px-6 py-2 rounded-lg font-semibold hover:bg-gray-200 transition cursor-pointer">
                                 Comprar ahora
                             </button>
                         </div>
@@ -102,6 +108,7 @@ export default function Home() {
                     </div>
                 </div>
             </div>
+            <HomeSlider />
         </MarketLayout>
     )
 }
