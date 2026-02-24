@@ -1,9 +1,14 @@
+import CartModal from "../market/home-components/CartModal";
+
 export default function MarketLayout({ children }) {
     return (
         <div className="min-h-screen flex flex-col">
-            <header className="py-3 px-10 bg-black flex items-center">
-                <img src="/marketLogo.svg" className="w-9 h-9 cursor-pointer mr-5" />
-                <h3 className="font-bold text-white text-2xl">HOME</h3>
+            <header className="py-3 px-10 bg-black flex items-center justify-between fixed top-0 left-0 w-full z-99">
+                <div className="flex items-center">
+                    <img src="/marketLogo.svg" className="w-9 h-9 cursor-pointer mr-5" />
+                    <h3 className="font-bold text-white text-2xl">HOME</h3>
+                </div>
+                <CartModal />
             </header>
 
             <main className="flex-1 bg-[#101014] overflow-hidden">
@@ -16,5 +21,5 @@ export default function MarketLayout({ children }) {
                 </header>
             </footer>
         </div>
-    ) 
+    )
 }

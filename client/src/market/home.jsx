@@ -45,9 +45,9 @@ export default function Home() {
 
     return (
         <MarketLayout>
-            <div className="flex flex-col items-center w-full m-10 ">
+            <div className="flex flex-col items-center w-full m-10">
 
-                <div className="w-full max-w-sm relative w-64 bg-[#404044] mb-10 flex justify-center items-center rounded-3xl">
+                <div className="w-full max-w-sm relative w-64 bg-[#404044] my-15 flex justify-center items-center rounded-3xl">
                     <FaSearch className="ml-4 text-gray-400 pointer-events-none" />
                     <input
                         type="text"
